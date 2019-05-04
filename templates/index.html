@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Mission to Mars</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+
+            <div class="jumbotron text-center">
+                <h1>Mission to Mars</h1>
+                <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data!</a></p>
+            </div>
+
+            <div class="row" id="latest-mars-news">
+                <div class="col-md-12">
+                    <h2 class="heading">Latest Mars News</h2>
+                    <h5>{{ mars.news_title }}</h5>
+                    <p>{{ mars.news_p }}</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-8">
+                    <h2>Featured Mars Image</h2>
+                    <img src="{{ mars.featured_image_url }}" style="max-width: 100%; max-height: auto;">
+                </div>
+
+                <div class="col-4" >
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Mars Weather</h5>
+                            <p class="card-text">{{ mars.mars_weather }}</p>
+                        </div>
+                    </div>
+                    <br>
+                    <h5>Mars Facts</h5>
+                    <div>
+                        {{ mars.facts_table|safe }}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <br>
+
+        <h3 style="text-align: center">Mars Hemispheres</h3>
+        <hr>
+
+        <div class="container">
+            <div class="row">
+                {% for picture in mars.hemisphere_images %}
+                <div class="col-6">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ picture.img_url }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h3 class="card-text">{{ picture.title }}</h3>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    </body>
+</html>
